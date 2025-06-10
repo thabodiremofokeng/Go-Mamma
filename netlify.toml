@@ -1,0 +1,9 @@
+[build]
+  functions = "netlify/functions"
+  publish = "." # This tells Netlify to publish the root directory
+
+# If you have specific rewrite rules (e.g., for a SPA), add them here
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200

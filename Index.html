@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Workout Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .text-accent-orange { color: #EE9B00; }
+        .bg-main-blue { background-color: #005F73; }
+        .bg-secondary-blue { background-color: #0A9396; }
+        .bg-light-teal { background-color: #94D2BD; }
+        .bg-light-sand { background-color: #E9D8A6; }
+        .bg-burnt-orange { background-color: #CA6702; }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #EE9B00;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Selected Color Palette: Brilliant Blues (from colour combinations image) -->
+    <!-- Neither Mermaid JS nor SVG were used anywhere in this output. -->
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-main-blue mb-2">Your Weekly Fitness Plan</h1>
+            <p class="text-lg md:text-xl text-gray-600">Consistency is Key to Achieving Your Goals!</p>
+            <p class="mt-4 text-gray-600 max-w-3xl mx-auto">Welcome to your personalized weekly workout plan, designed to enhance your strength, endurance, and overall well-being. This infographic outlines each day's focus, providing clarity and actionable steps for your fitness journey. Follow this structured approach to maximize your training efficiency and achieve sustainable progress.</p>
+        </header>
+
+        <main>
+            <section id="weekly-overview" class="mb-12 bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-main-blue text-center mb-8">Your Week at a Glance</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">This overview provides a quick snapshot of the primary focus for each day, ensuring a balanced and progressive training schedule. From building strength to active recovery, each day serves a specific purpose in your fitness journey.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="flex flex-col items-center p-4 bg-light-teal rounded-lg text-center shadow">
+                        <span class="text-4xl mb-2">💪</span>
+                        <h3 class="font-bold text-main-blue">Monday</h3>
+                        <p class="text-gray-700">Strength + Mobility</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-light-sand rounded-lg text-center shadow">
+                        <span class="text-4xl mb-2">🏃‍♀️</span>
+                        <h3 class="font-bold text-main-blue">Tuesday</h3>
+                        <p class="text-gray-700">Intervals / Jeff-style run</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-light-teal rounded-lg text-center shadow">
+                        <span class="text-4xl mb-2">🧘‍♀️</span>
+                        <h3 class="font-bold text-main-blue">Wednesday</h3>
+                        <p class="text-gray-700">Cross-training / Rest</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-light-sand rounded-lg text-center shadow">
+                        <span class="text-4xl mb-2">⛰️</span>
+                        <h3 class="font-bold text-main-blue">Thursday</h3>
+                        <p class="text-gray-700">Tempo / Hill Pace</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-light-teal rounded-lg text-center shadow">
+                        <span class="text-4xl mb-2">🛌</span>
+                        <h3 class="font-bold text-main-blue">Friday</h3>
+                        <p class="text-gray-700">Rest or Active Recovery</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-light-sand rounded-lg text-center shadow">
+                        <span class="text-4xl mb-2">🛣️</span>
+                        <h3 class="font-bold text-main-blue">Saturday</h3>
+                        <p class="text-gray-700">Long Run</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4 bg-light-teal rounded-lg text-center shadow">
+                        <span class="text-4xl mb-2">👟</span>
+                        <h3 class="font-bold text-main-blue">Sunday</h3>
+                        <p class="text-gray-700">Easy Run + Optional Strength</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="daily-details" class="mb-12">
+                <h2 class="text-3xl font-bold text-main-blue text-center mb-8">Daily Deep Dive</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Explore the specific objectives and recommended activities for each day of your workout week. This detailed breakdown ensures you understand the purpose behind every session and how it contributes to your overall fitness goals.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-2">Monday: Build & Mobilize</h3>
+                        <p class="text-gray-700 mb-4">Focus on foundational strength and joint health.</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li><strong>20-30 minutes:</strong> bodyweight + resistance work</li>
+                            <li>Targets: quads, glutes, hamstrings, core</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-2">Tuesday: Pick Up the Pace</h3>
+                        <p class="text-gray-700 mb-4">Improve speed and endurance with strategic intervals.</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li><strong>12-week progression:</strong> run/walk intervals</li>
+                            <li>Starting easy, progressing to 5K-pace efforts</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-2">Wednesday: Recharge & Recover</h3>
+                        <p class="text-gray-700 mb-4">Prioritize active recovery or complete rest to aid muscle repair.</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li><strong>Low-impact cardio:</strong> cycling, swimming, yoga</li>
+                            <li><strong>Alternatively:</strong> Full rest day for optimal recovery</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-2">Thursday: Push Your Limits</h3>
+                        <p class="text-gray-700 mb-4">Enhance your lactate threshold and uphill running strength.</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Build lactate threshold</li>
+                            <li>Steady tempo or hill repeats</li>
+                            <li><strong>Duration:</strong> 20-35 minutes</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-2">Friday: Time to Recover</h3>
+                        <p class="text-gray-700 mb-4">An essential day for physical and mental recuperation.</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Light movement (e.g., short walk)</li>
+                            <li>Dedicated day off for recovery</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-2">Saturday: Endure & Grow</h3>
+                        <p class="text-gray-700 mb-4">Develop your aerobic base with a sustained, easy-paced run.</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Progressive increase from 5 km to 10 km</li>
+                            <li>Maintain an easy, conversational pace</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-2">Sunday: Gentle Pace & Core Work</h3>
+                        <p class="text-gray-700 mb-4">Wind down the week with an easy run and optional strength work.</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Relaxed 20-30 minute run</li>
+                            <li>Optional light strength/core work</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="llm-features" class="mb-12">
+                <h2 class="text-3xl font-bold text-main-blue text-center mb-8">AI-Powered Fitness Insights</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Leverage artificial intelligence to get personalized workout ideas and healthy meal suggestions, enhancing your fitness journey with smart recommendations.</p>
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-accent-orange mb-4 text-center">✨ Healthy Meal Suggestion ✨</h3>
+                        <p class="text-gray-600 mb-4">Get a healthy meal idea based on your chosen day and nutritional need.</p>
+                        <div class="mb-4">
+                            <label for="mealType" class="block text-gray-700 text-sm font-bold mb-2">Meal Type:</label>
+                            <select id="mealType" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="nutritionalFocus" class="block text-gray-700 text-sm font-bold mb-2">Nutritional Focus:</label>
+                            <select id="nutritionalFocus" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="protein-rich">Protein-rich</option>
+                                <option value="carb-rich">Carb-rich</option>
+                                <option value="balanced">Balanced</option>
+                                <option value="vegetarian">Vegetarian</option>
+                            </select>
+                        </div>
+                         <div class="mb-6">
+                            <label for="mealDay" class="block text-gray-700 text-sm font-bold mb-2">Day of Week:</label>
+                            <select id="mealDay" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="Monday">Monday (Strength + Mobility)</option>
+                                <option value="Tuesday">Tuesday (Intervals / Jeff-style run)</option>
+                                <option value="Wednesday">Wednesday (Cross-training / Rest)</option>
+                                <option value="Thursday">Thursday (Tempo / Hill Pace)</option>
+                                <option value="Friday">Friday (Rest or Active Recovery)</option>
+                                <option value="Saturday">Saturday (Long Run)</option>
+                                <option value="Sunday">Sunday (Easy Run + Optional Strength)</option>
+                            </select>
+                        </div>
+                        <button id="generateMealBtn" class="bg-main-blue hover:bg-secondary-blue text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full transition duration-300 ease-in-out transform hover:scale-105">
+                            Suggest Meal
+                        </button>
+                        <div id="mealOutput" class="mt-4 p-3 bg-gray-100 rounded text-gray-800 min-h-[80px] flex items-center justify-center">
+                            <div id="mealSpinner" class="spinner hidden"></div>
+                            <p class="text-sm text-center" id="mealText">Your meal suggestion will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="activity-breakdown-chart" class="mb-12 bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-main-blue text-center mb-8">Weekly Activity Duration Breakdown (Minutes)</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">This chart visualizes the approximate time allocated to planned activities throughout your week. It helps in understanding the balance between different types of training, ensuring a well-rounded fitness regimen.</p>
+                <div class="chart-container">
+                    <canvas id="weeklyDurationChart"></canvas>
+                </div>
+            </section>
+
+            <section id="key-tips" class="mb-12 bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-main-blue text-center mb-8">Maximizing Your Plan: Key Tips for Success</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Beyond the daily workouts, these essential tips are crucial for supporting your body, preventing injury, and sustaining your motivation. Incorporate them into your routine for optimal performance and recovery.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="flex items-start p-4 bg-light-teal rounded-lg shadow">
+                        <span class="text-3xl mr-3 mt-1">👂</span>
+                        <div>
+                            <h3 class="font-bold text-main-blue">Listen to your body</h3>
+                            <p class="text-gray-700">Adjust as needed. Rest when tired, push when able.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-light-sand rounded-lg shadow">
+                        <span class="text-3xl mr-3 mt-1">💧</span>
+                        <div>
+                            <h3 class="font-bold text-main-blue">Stay hydrated</h3>
+                            <p class="text-gray-700">Drink plenty of water throughout the day, especially around workouts.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-light-teal rounded-lg shadow">
+                        <span class="text-3xl mr-3 mt-1">🍎</span>
+                        <div>
+                            <h3 class="font-bold text-main-blue">Fuel properly</h3>
+                            <p class="text-gray-700">Eat nutritious foods to support your training and recovery.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-light-sand rounded-lg shadow">
+                        <span class="text-3xl mr-3 mt-1">😴</span>
+                        <div>
+                            <h3 class="font-bold text-main-blue">Prioritize sleep</h3>
+                            <p class="text-gray-700">Essential for muscle repair, energy, and overall performance.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-light-teal rounded-lg shadow">
+                        <span class="text-3xl mr-3 mt-1">😊</span>
+                        <div>
+                            <h3 class="font-bold text-main-blue">Enjoy the process!</h3>
+                            <p class="text-gray-700">Make fitness a joyful and sustainable part of your life.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center border-t border-gray-200 pt-6 mt-12">
+            <p class="text-gray-500 text-sm">Design by Go MAMA Wellness</p>
+            <p class="text-xs text-gray-400 mt-2">This plan is a general guideline; consult a professional for personalized advice.</p>
+        </footer>
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            main: '#005F73',
+            secondary: '#0A9396',
+            teal: '#94D2BD',
+            sand: '#E9D8A6',
+            orange: '#EE9B00',
+            burntOrange: '#CA6702'
+        };
+
+        const wrapLabel = (label) => {
+            if (label.length <= 16) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > 16 && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                    labels: {
+                        color: '#374151',
+                        font: { size: 12 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Duration (Minutes)',
+                        color: '#4B5563',
+                        font: { size: 14 }
+                    },
+                    ticks: { color: '#4B5563' },
+                    grid: { color: '#E5E7EB' }
+                },
+                x: {
+                    ticks: { color: '#4B5563' },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        const weeklyDurationCtx = document.getElementById('weeklyDurationChart').getContext('2d');
+        new Chart(weeklyDurationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                datasets: [{
+                    label: 'Planned Duration (Minutes)',
+                    data: [25, 30, 20, 30, 15, 60, 40],
+                    backgroundColor: [
+                        brilliantBlues.secondary,
+                        brilliantBlues.orange,
+                        brilliantBlues.secondary,
+                        brilliantBlues.orange,
+                        brilliantBlues.secondary,
+                        brilliantBlues.orange,
+                        brilliantBlues.secondary
+                    ],
+                    borderColor: [
+                        brilliantBlues.main,
+                        brilliantBlues.burntOrange,
+                        brilliantBlues.main,
+                        brilliantBlues.burntOrange,
+                        brilliantBlues.main,
+                        brilliantBlues.burntOrange,
+                        brilliantBlues.main
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: defaultChartOptions
+        });
+
+        const workoutPlanDetails = {
+            "Monday": "Strength + Mobility",
+            "Tuesday": "Intervals / Jeff-style run",
+            "Wednesday": "Cross-training / Rest",
+            "Thursday": "Tempo / Hill Pace",
+            "Friday": "Rest or Active Recovery",
+            "Saturday": "Long Run",
+            "Sunday": "Easy Run + Optional Strength"
+        };
+
+        async function callGeminiAPI(prompt, outputElement, spinnerElement, defaultTextElement) {
+            // Clear previous output, show spinner, hide default text
+            outputElement.innerHTML = '';
+            spinnerElement.classList.remove('hidden');
+            defaultTextElement.classList.add('hidden');
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            // IMPORTANT: For Netlify deployment, this MUST be changed to 
+            // and your API key must be set as a Netlify Environment Variable.
+            // In the Canvas environment, the API key is injected automatically.
+            const apiUrl = '/.netlify/functions/gemini-proxy'
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.innerHTML = `<p class="text-sm">${text}</p>`;
+                } else {
+                    outputElement.innerHTML = `<p class="text-sm text-red-600">Error: No response from AI. Please try again.</p>`;
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                outputElement.innerHTML = `<p class="text-sm text-red-600">Failed to connect to AI. Check console for details.</p>`;
+            } finally {
+                spinnerElement.classList.add('hidden');
+                if (outputElement.innerHTML === '') { 
+                    defaultTextElement.classList.remove('hidden');
+                } else {
+                    defaultTextElement.classList.add('hidden'); 
+                }
+            }
+        }
+
+        document.getElementById('generateMealBtn').addEventListener('click', () => {
+            const mealType = document.getElementById('mealType').value;
+            const nutritionalFocus = document.getElementById('nutritionalFocus').value;
+            const mealDay = document.getElementById('mealDay').value;
+            const workoutTypeForDay = workoutPlanDetails[mealDay.split(' ')[0]]; 
+
+            const prompt = `Suggest one concise healthy ${mealType} meal for someone following a workout plan with a ${workoutTypeForDay} session on ${mealDay.split(' ')[0]}. Include simple ingredients and very brief instructions. Focus on ${nutritionalFocus}. Do not include any intros or outros.`;
+
+            const mealOutputDiv = document.getElementById('mealOutput');
+            const mealSpinner = document.getElementById('mealSpinner');
+            const mealText = document.getElementById('mealText'); 
+
+            callGeminiAPI(prompt, mealOutputDiv, mealSpinner, mealText);
+        });
+    </script>
+</body>
+</html>
